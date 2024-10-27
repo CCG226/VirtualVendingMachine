@@ -28,16 +28,16 @@ namespace VirtualVendingMachine
         const string CREAM = "A&W Cream";
 
         readonly string path = AppDomain.CurrentDomain.BaseDirectory + @"Images\";
-     
+
         private void StockVendingMachine()
         {
             machine = new VendingMachine();
 
-             machine.StockMachine(BuildOptions());
+            machine.StockMachine(BuildOptions());
 
-           
-          
-            PepsiBtn.Image = Image.FromFile($"{path}{ machine.FindSoda(COLA).vendingLabelImage}.png");
+
+
+            PepsiBtn.Image = Image.FromFile($"{path}{machine.FindSoda(COLA).vendingLabelImage}.png");
             RootBeerBtn.Image = Image.FromFile($"{path}{machine.FindSoda(ROOTB).vendingLabelImage}.png");
             LemonLimeBtn.Image = Image.FromFile($"{path}{machine.FindSoda(LEMONLIME).vendingLabelImage}.png");
             GrapeBtn.Image = Image.FromFile($"{path}{machine.FindSoda(GRAPE).vendingLabelImage}.png");
@@ -62,35 +62,39 @@ namespace VirtualVendingMachine
             if (resultImage == VendingMachine.OUT_OF_STOCK)
             {
                 hoveredButton.Image = Image.FromFile($"{path}{resultImage}.png");
+                OutputText.Text = "";
+                CanBox.Visible = false;
             }
             else
             {
                 OutputText.ForeColor = Color.White;
-                OutputText.Text = $"You Got A ${soda.name} for ${soda.price.ToString("C")}";
-                OutputText.Font = new Font(OutputText.Font.FontFamily, 20, FontStyle.Italic);
-           
-                OutputBox.Image = Image.FromFile($"{path}{resultImage}.png");
-            }    
+                OutputText.Text = $"You Got {soda.name} \nfor {soda.price.ToString("C")}";
+                OutputText.Font = new Font(OutputText.Font.FontFamily, 13, FontStyle.Italic);
+
+                CanBox.Visible = true;
+                CanBox.Image = Image.FromFile($"{path}{resultImage}.png");
+            }
         }
         private void PriceHover(object sender, EventArgs e)
         {
-           
+
             Button hoveredButton = sender as Button;
-            
-            if (hoveredButton is null) {
+
+            if (hoveredButton is null)
+            {
                 return;
             }
 
             decimal priceToDisplay = machine.FindSoda(hoveredButton?.Name).price;
 
             OutputText.ForeColor = Color.DarkRed;
-            OutputText.Text = priceToDisplay.ToString("C");
-            OutputText.Font = new Font(OutputText.Font.FontFamily,20, FontStyle.Bold);
+            OutputText.Text = hoveredButton?.Name + ": " + priceToDisplay.ToString("C");
+            OutputText.Font = new Font(OutputText.Font.FontFamily, 13, FontStyle.Bold);
         }
 
         private List<Soda> BuildOptions()
         {
-            List<Soda> opts =  new List<Soda>() {
+            List<Soda> opts = new List<Soda>() {
                 new Soda
                 {
                     amount = 20,
@@ -135,5 +139,7 @@ namespace VirtualVendingMachine
 
             return opts;
         }
+
+    
     }
 }

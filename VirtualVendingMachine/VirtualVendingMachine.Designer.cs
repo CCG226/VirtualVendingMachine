@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿
+
+using System.Windows.Forms;
 
 namespace VirtualVendingMachine
 {
@@ -39,18 +41,20 @@ namespace VirtualVendingMachine
             LemonLimeBtn = new Button();
             RootBeerBtn = new Button();
             PepsiBtn = new Button();
+            CanBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)Title).BeginInit();
             ((System.ComponentModel.ISupportInitialize)OutputBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CanBox).BeginInit();
             SuspendLayout();
             // 
             // OutputText
             // 
             OutputText.AutoSize = true;
-            OutputText.Location = new Point(659, 293);
+            OutputText.Location = new Point(580, 293);
             OutputText.Name = "OutputText";
-            OutputText.Size = new Size(52, 20);
+            OutputText.Size = new Size(0, 20);
             OutputText.TabIndex = 5;
-            OutputText.Text = "Peposi";
+            OutputText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Title
             // 
@@ -68,11 +72,12 @@ namespace VirtualVendingMachine
             CreamBtn.Size = new Size(254, 81);
             CreamBtn.TabIndex = 10;
             CreamBtn.UseVisualStyleBackColor = true;
+            CreamBtn.Click += BuyClick;
             CreamBtn.MouseHover += PriceHover;
             // 
             // OutputBox
             // 
-            OutputBox.Location = new Point(332, 375);
+            OutputBox.Location = new Point(323, 375);
             OutputBox.Name = "OutputBox";
             OutputBox.Size = new Size(195, 76);
             OutputBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -86,6 +91,7 @@ namespace VirtualVendingMachine
             GrapeBtn.Size = new Size(254, 81);
             GrapeBtn.TabIndex = 12;
             GrapeBtn.UseVisualStyleBackColor = true;
+            GrapeBtn.Click += BuyClick;
             GrapeBtn.MouseHover += PriceHover;
             // 
             // LemonLimeBtn
@@ -95,6 +101,7 @@ namespace VirtualVendingMachine
             LemonLimeBtn.Size = new Size(254, 81);
             LemonLimeBtn.TabIndex = 13;
             LemonLimeBtn.UseVisualStyleBackColor = true;
+            LemonLimeBtn.Click += BuyClick;
             LemonLimeBtn.MouseHover += PriceHover;
             // 
             // RootBeerBtn
@@ -104,6 +111,7 @@ namespace VirtualVendingMachine
             RootBeerBtn.Size = new Size(254, 81);
             RootBeerBtn.TabIndex = 14;
             RootBeerBtn.UseVisualStyleBackColor = true;
+            RootBeerBtn.Click += BuyClick;
             RootBeerBtn.MouseHover += PriceHover;
             // 
             // PepsiBtn
@@ -113,8 +121,19 @@ namespace VirtualVendingMachine
             PepsiBtn.Size = new Size(254, 81);
             PepsiBtn.TabIndex = 15;
             PepsiBtn.UseVisualStyleBackColor = true;
+            PepsiBtn.Click += BuyClick;
             PepsiBtn.MouseHover += PriceHover;
-            PepsiBtn.Click += BuyClick; 
+            // 
+            // CanBox
+            // 
+            CanBox.BackColor = Color.Transparent;     
+            CanBox.Name = "CanBox";
+            CanBox.Size = new Size(79, 82);
+            CanBox.Location = new Point(400, 391);
+            CanBox.Visible = false;
+            CanBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            CanBox.TabIndex = 16;
+            CanBox.TabStop = false;
             // 
             // VirtualVendingMachine
             // 
@@ -122,6 +141,7 @@ namespace VirtualVendingMachine
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 51, 153);
             ClientSize = new Size(846, 473);
+            Controls.Add(CanBox);
             Controls.Add(PepsiBtn);
             Controls.Add(RootBeerBtn);
             Controls.Add(LemonLimeBtn);
@@ -134,6 +154,7 @@ namespace VirtualVendingMachine
             Text = "VirtualVendingMachine";
             ((System.ComponentModel.ISupportInitialize)Title).EndInit();
             ((System.ComponentModel.ISupportInitialize)OutputBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CanBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,5 +168,6 @@ namespace VirtualVendingMachine
         private Button LemonLimeBtn;
         private Button RootBeerBtn;
         private Button PepsiBtn;
+        private PictureBox CanBox;
     }
 }
